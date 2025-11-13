@@ -1,145 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mycompany.bank.proccesTest" time="0.053" tests="15" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mycompany.bank.proccesTest" time="1.19" tests="19" errors="0" skipped="0" failures="2">
   <properties>
-    <property name="java.specification.version" value="22"/>
-    <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/ragyhma/Downloads/bank/target/test-classes:/Users/ragyhma/Downloads/bank/target/classes:/Users/ragyhma/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/Users/ragyhma/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/Users/ragyhma/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/ragyhma/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/Users/ragyhma/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/ragyhma/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/Users/ragyhma/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/Users/ragyhma/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\hadee\Documents\NetBeans\net23\CPIT455_ProjectBank\target\test-classes;C:\Users\hadee\Documents\NetBeans\net23\CPIT455_ProjectBank\target\classes;C:\Users\hadee\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\hadee\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\hadee\.m2\repository\org\mockito\mockito-core\5.11.0\mockito-core-5.11.0.jar;C:\Users\hadee\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\hadee\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.12\byte-buddy-agent-1.14.12.jar;C:\Users\hadee\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\hadee\.m2\repository\org\mockito\mockito-all\2.0.2-beta\mockito-all-2.0.2-beta.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
-    <property name="os.name" value="Mac OS X"/>
-    <property name="java.vm.specification.version" value="22"/>
-    <property name="user.country" value="SA"/>
+    <property name="user.timezone" value="GMT+03:00"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/ragyhma/Downloads/bank/target/surefire/surefirebooter-20251113134830973_3.jar /Users/ragyhma/Downloads/bank/target/surefire 2025-11-13T13-48-30_925-jvmRun1 surefire-20251113134830973_1tmp surefire_0-20251113134830973_2tmp"/>
-    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
+    <property name="sun.java.command" value="C:\Users\hadee\AppData\Local\Temp\surefire16168271499690641072\surefirebooter-20251113231006054_3.jar C:\Users\hadee\AppData\Local\Temp\surefire16168271499690641072 2025-11-13T23-10-05_975-jvmRun1 surefire-20251113231006054_1tmp surefire_0-20251113231006054_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="com.mycompany.bank.proccesTest"/>
-    <property name="surefire.test.class.path" value="/Users/ragyhma/Downloads/bank/target/test-classes:/Users/ragyhma/Downloads/bank/target/classes:/Users/ragyhma/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/Users/ragyhma/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/Users/ragyhma/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/ragyhma/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/Users/ragyhma/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/ragyhma/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/Users/ragyhma/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/Users/ragyhma/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
+    <property name="surefire.test.class.path" value="C:\Users\hadee\Documents\NetBeans\net23\CPIT455_ProjectBank\target\test-classes;C:\Users\hadee\Documents\NetBeans\net23\CPIT455_ProjectBank\target\classes;C:\Users\hadee\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\hadee\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\hadee\.m2\repository\org\mockito\mockito-core\5.11.0\mockito-core-5.11.0.jar;C:\Users\hadee\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\hadee\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.12\byte-buddy-agent-1.14.12.jar;C:\Users\hadee\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\hadee\.m2\repository\org\mockito\mockito-all\2.0.2-beta\mockito-all-2.0.2-beta.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="/Users/ragyhma"/>
+    <property name="user.home" value="C:\Users\hadee"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="java.version.date" value="2024-07-16"/>
-    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home"/>
-    <property name="file.separator" value="/"/>
-    <property name="basedir" value="/Users/ragyhma/Downloads/bank"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-21"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\hadee\Documents\NetBeans\net23\CPIT455_ProjectBank"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/ragyhma/Downloads/bank/target/surefire/surefirebooter-20251113134830973_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\hadee\AppData\Local\Temp\surefire16168271499690641072\surefirebooter-20251113231006054_3.jar"/>
+    <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.runtime.version" value="22.0.2+9-70"/>
-    <property name="user.name" value="ragyhma"/>
-    <property name="stdout.encoding" value="UTF-8"/>
-    <property name="path.separator" value=":"/>
-    <property name="os.version" value="15.6.1"/>
+    <property name="java.runtime.version" value="21.0.4+8-LTS-274"/>
+    <property name="user.name" value="hadee"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="maven.ext.class.path" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/maven-nblib/netbeans-eventspy.jar"/>
-    <property name="localRepository" value="/Users/ragyhma/.m2/repository"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-23\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="localRepository" value="C:\Users\hadee\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="/var/folders/9l/m5_n9r5d5p55qs_98dbpmtgm0000gn/T/"/>
-    <property name="java.version" value="22.0.2"/>
-    <property name="user.dir" value="/Users/ragyhma/Downloads/bank"/>
-    <property name="os.arch" value="aarch64"/>
+    <property name="java.io.tmpdir" value="C:\Users\hadee\AppData\Local\Temp\"/>
+    <property name="java.version" value="21.0.4"/>
+    <property name="user.dir" value="C:\Users\hadee\Documents\NetBeans\net23\CPIT455_ProjectBank"/>
+    <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="native.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/Users/ragyhma/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;;;C:\Program Files\Ampps\php;C:\Program Files\nodejs\;C:\Users\hadee\AppData\Local\Programs\Python\Launcher\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\hadee\AppData\Local\Microsoft\WindowsApps;C:\flutter\flutter\bin;C:\Users\hadee\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\hadee\AppData\Roaming\npm;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="22.0.2+9-70"/>
-    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.class.version" value="66.0"/>
+    <property name="java.vm.version" value="21.0.4+8-LTS-274"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testCalculateInterest_NegativeRate" classname="com.mycompany.bank.proccesTest" time="0.018">
-    <system-out><![CDATA[Invalid interest rate!
-]]></system-out>
+  <testcase name="testCalculateInterest_NegativeRate" classname="com.mycompany.bank.proccesTest" time="1.101">
+    <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\hadee\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.12\byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
   </testcase>
-  <testcase name="testCalculateInterest_ValidRate" classname="com.mycompany.bank.proccesTest" time="0.003">
-    <system-out><![CDATA[Interest added: 50.0
-]]></system-out>
+  <testcase name="testCalculateInterest_ValidRate" classname="com.mycompany.bank.proccesTest" time="0.006"/>
+  <testcase name="testDeposit_MultipleDeposits" classname="com.mycompany.bank.proccesTest" time="0.008"/>
+  <testcase name="testWithdraw_ValidAmount" classname="com.mycompany.bank.proccesTest" time="0.003"/>
+  <testcase name="testCheckBalance_WrongExpectedValue" classname="com.mycompany.bank.proccesTest" time="0.013">
+    <failure message="expected:&lt;[Nora]&gt; but was:&lt;[Hadeel]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[Nora]> but was:<[Hadeel]>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.mycompany.bank.proccesTest.testCheckBalance_WrongExpectedValue(proccesTest.java:291)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:316)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:240)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:214)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:155)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
   </testcase>
-  <testcase name="testDeposit_MultipleDeposits" classname="com.mycompany.bank.proccesTest" time="0.004">
-    <system-out><![CDATA[Enter the Amount you want to deposit ::
- 100 is deposited into your Account
-Current Available Balance is Rs = 600
-Enter the Amount you want to deposit ::
- 200 is deposited into your Account
-Current Available Balance is Rs = 800
-]]></system-out>
+  <testcase name="testDeposit_ZeroAmount" classname="com.mycompany.bank.proccesTest" time="0.003"/>
+  <testcase name="testWithdraw_ZeroAmount" classname="com.mycompany.bank.proccesTest" time="0.002"/>
+  <testcase name="testCheckBalance_AfterChangingValues" classname="com.mycompany.bank.proccesTest" time="0.028"/>
+  <testcase name="testWithdraw_AmountGreaterThanBalance" classname="com.mycompany.bank.proccesTest" time="0.002"/>
+  <testcase name="testCheckBalance_WrongBalanceValue" classname="com.mycompany.bank.proccesTest" time="0.003">
+    <failure message="expected:&lt;8000&gt; but was:&lt;5000&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: expected:<8000> but was:<5000>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:647)
+	at org.junit.Assert.assertEquals(Assert.java:633)
+	at com.mycompany.bank.proccesTest.testCheckBalance_WrongBalanceValue(proccesTest.java:300)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:316)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:240)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:214)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:155)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
   </testcase>
-  <testcase name="testWithdraw_ValidAmount" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Enter the Amount you want to withdraw:
- 200 is withdrawn from your Account
-Current Available Balance is Rs  ::800
-]]></system-out>
-  </testcase>
-  <testcase name="testDeposit_ZeroAmount" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Enter the Amount you want to deposit ::
- 0 is deposited into your Account
-Current Available Balance is Rs = 1000
-]]></system-out>
-  </testcase>
-  <testcase name="testWithdraw_ZeroAmount" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Enter the Amount you want to withdraw:
- 0 is withdrawn from your Account
-Current Available Balance is Rs  ::1000
-]]></system-out>
-  </testcase>
-  <testcase name="testWithdraw_AmountGreaterThanBalance" classname="com.mycompany.bank.proccesTest" time="0.002">
-    <system-out><![CDATA[Enter the Amount you want to withdraw:
-Low Balance
-Current Available Balance is Rs  ::500
-]]></system-out>
-  </testcase>
-  <testcase name="testDeposit_NegativeAmount" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Enter the Amount you want to deposit ::
- -200 is deposited into your Account
-Current Available Balance is Rs = 800
-]]></system-out>
-  </testcase>
-  <testcase name="testCalculateInterest_LargeRate" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Interest added: 500.0
-]]></system-out>
-  </testcase>
-  <testcase name="testCalculateInterest_FractionalRate" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Interest added: 25.0
-]]></system-out>
-  </testcase>
-  <testcase name="testWithdraw_NegativeAmount" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Enter the Amount you want to withdraw:
- -50 is withdrawn from your Account
-Current Available Balance is Rs  ::1050
-]]></system-out>
-  </testcase>
-  <testcase name="testDeposit_ValidAmount" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Enter the Amount you want to deposit ::
- 500 is deposited into your Account
-Current Available Balance is Rs = 1500
-]]></system-out>
-  </testcase>
-  <testcase name="testCalculateInterest_ZeroRate" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Invalid interest rate!
-]]></system-out>
-  </testcase>
-  <testcase name="testWithdraw_AmountEqualToBalance" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Enter the Amount you want to withdraw:
-Low Balance
-Current Available Balance is Rs  ::300
-]]></system-out>
-  </testcase>
-  <testcase name="testDeposit_LargeAmount" classname="com.mycompany.bank.proccesTest" time="0.001">
-    <system-out><![CDATA[Enter the Amount you want to deposit ::
- 100000 is deposited into your Account
-Current Available Balance is Rs = 101000
-]]></system-out>
-  </testcase>
+  <testcase name="testDeposit_NegativeAmount" classname="com.mycompany.bank.proccesTest" time="0.003"/>
+  <testcase name="testCalculateInterest_LargeRate" classname="com.mycompany.bank.proccesTest" time="0.002"/>
+  <testcase name="testCheckBalance_VerifyCalls" classname="com.mycompany.bank.proccesTest" time="0.002"/>
+  <testcase name="testCalculateInterest_FractionalRate" classname="com.mycompany.bank.proccesTest" time="0.001"/>
+  <testcase name="testWithdraw_NegativeAmount" classname="com.mycompany.bank.proccesTest" time="0.002"/>
+  <testcase name="testDeposit_ValidAmount" classname="com.mycompany.bank.proccesTest" time="0.002"/>
+  <testcase name="testCalculateInterest_ZeroRate" classname="com.mycompany.bank.proccesTest" time="0.001"/>
+  <testcase name="testWithdraw_AmountEqualToBalance" classname="com.mycompany.bank.proccesTest" time="0.002"/>
+  <testcase name="testDeposit_LargeAmount" classname="com.mycompany.bank.proccesTest" time="0.002"/>
 </testsuite>
