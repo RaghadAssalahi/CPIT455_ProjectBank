@@ -71,7 +71,22 @@ public class Operation
 					if (scan.nextInt()==1) 
 						bankinfo();
 					break;
-				case 6:
+                                                                                 case 6:
+                                                                                    System.out.println(" -----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                                                                                    System.out.println("WELCOME TO INTEREST CALCULATION PAGE");
+                                                                                    System.out.println("Please enter the interest rate (%): ");
+
+                                                                                        double rate = scan.nextDouble();   // user enters interest rate
+                                                                                        bankprocess.calculateInterest(rate);
+
+                                                                                    System.out.println();
+                                                                                    System.out.println(" -----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                                                                                    System.out.println("MAIN PAGE_:: PRESS 1 ::");
+
+                                                                                        if (scan.nextInt() == 1)
+                                                                                            bankinfo();
+                                                                                        break;
+				case 7:
 					System.out.println("THANKS FOR USING OUT BANK APPLICATION");
 					break;
 				}
