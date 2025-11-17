@@ -1,1 +1,4 @@
-com/mycompany/bank/OperationTest.class
+com\mycompany\bank\componenTest.class
+com\mycompany\bank\OperationTest.class
+com\mycompany\bank\ComponentMockTest.class
+com\mycompany\bank\proccesTest.class

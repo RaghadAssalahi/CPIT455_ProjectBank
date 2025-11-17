@@ -1,4 +1,5 @@
 package com.mycompany.bank;
+
 /*CPIT455-TESTING PROHECT
 Group:4
 Section:VAR
@@ -6,9 +7,10 @@ Students Name:
 Hadeel Alweldi
 Raghad Alssalahi
 Shouq Alsubaie
-*/
-
+ */
 import java.io.*;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import org.junit.*;
 import org.junit.Rule;
@@ -20,23 +22,24 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class proccesTest {
+
     private procces process;       // object we are testing
     private BankInfo mockBank;     // fake bank object
 
     public proccesTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-         //create mock of Bankinfo
+        //create mock of Bankinfo
         mockBank = mock(BankInfo.class);
 
         // Define fake values
@@ -49,216 +52,362 @@ public class proccesTest {
         process = new procces();
         process.bank1 = mockBank;
     }
-    
+
     @After
     public void tearDown() {
     }
+
     //********************Shouq UnitTest*******************//
-     /**
+    /**
      * Test of openAccount method, of class procces.
      */
-   
+    // Test 1: Normal case – verify all inputs are set correctly
+    @Test
+    public void testOpenAccount_NormalCase() {
+        // Create a new BankInfo instance
+        procces.bank1 = new BankInfo();
+
+        // Simulate user input: accountNo, accountType, name, balance
+        String input = "12345\nSaving\nShouq\n5000\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        new procces().openAccount();
+
+        // Assert that values were set correctly
+        assertEquals("12345", procces.bank1.getAccno());
+        assertEquals("Saving", procces.bank1.getAcc_type());
+        assertEquals("Shouq", procces.bank1.getName());
+        assertEquals(5000L, procces.bank1.getBalance());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testOpenAccount_EmptyStrings() {
+        String input = "\n\n\n1000\n"; // empty acc no, type, name, balance 1000
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        process.openAccount();
+
+        verify(mockBank).setAccno("");
+        verify(mockBank).setAcc_type("");
+        verify(mockBank).setName("");
+        verify(mockBank).setBalance(1000L);
+    }
+
+    @Test
+    public void testOpenAccount_WrongExpectedName() {
+
+        String input = "123\nSaving\nShouq\n5000\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        process = new procces();            // <-- IMPORTANT: resets Scanner
+        process.bank1 = new BankInfo();     // use real object
+
+        process.openAccount();
+
+        // Intentional failure because the Real name != the excpted name 
+        assertEquals("Rahaf", process.bank1.getName());
+    }
+
+    @Test
+    public void testOpenAccount_NegativeBalance() {
+        String input = "123\nSaving\nShouq\n-500\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        process = new procces();
+        process.bank1 = new BankInfo();
+
+        process.openAccount();
+
+        assertEquals(-500, process.bank1.getBalance());
+    }
 
     /**
      * Test of demoaccount method, of class procces.
      */
-    //********************Shouq UnitTest*******************//
+    //********************Shouq UnitTest*******************// 
+    // Test 1: Check full output contains all expected lines
+    @Test
+    public void testDemoAccount_Output() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        process.demoaccount();
+
+        String sep = System.lineSeparator();  // platform-independent newline
+        String expectedOutput = ""
+                + "Name of account holder :: Demo user" + sep
+                + "Account no             :: 8529637412" + sep
+                + "Account type           :: demo" + sep
+                + "Balance                :: 50000" + sep;
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
     
+    // Test 2: Checks that the output contains the expected name.
+    @Test
+    public void testDemoAccount_ContainsName() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        process.demoaccount();
+
+        assertTrue(outContent.toString().contains("Demo user"));
+    }
+
+    // Test 3: Ensures the method prints exactly 4 lines.
+    @Test
+    public void testDemoAccount_LinesCount() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        process.demoaccount();
+
+        String output = outContent.toString();
+        // Split lines and check count
+        String[] lines = output.split(System.lineSeparator());
+        assertEquals(4, lines.length);
+    }
     
+    // Test 4: Verifies the order of printed lines.
+    // Useful to detect if someone accidentally rearranges println statements.
+
+    @Test
+    public void testDemoAccount_OutputOrder() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        process.demoaccount();
+
+        String[] lines = outContent.toString().split(System.lineSeparator());
+
+        assertEquals("Name of account holder :: Demo user", lines[0]);
+        assertEquals("Account no             :: 8529637412", lines[1]);
+        assertEquals("Account type           :: demo", lines[2]);
+        assertEquals("Balance                :: 50000", lines[3]);
+    }
+
     //********************Raghad UnitTest*******************//
-    
-  /** Tests withdrawing a valid amount that is less than the balance. */
-@Test
-public void testWithdraw_ValidAmount() {
+    /**
+     * Tests withdrawing a valid amount that is less than the balance.
+     */
+    @Test
+    public void testWithdraw_ValidAmount() {
 
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(1000);
-    System.setIn(new ByteArrayInputStream("200\n".getBytes()));
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(1000);
+        System.setIn(new ByteArrayInputStream("200\n".getBytes()));
 
-    new procces().withdraw();
+        new procces().withdraw();
 
-    assertEquals(800, procces.bank1.getBalance());
-}
+        assertEquals(800, procces.bank1.getBalance());
+    }
 
-/** Tests withdrawing an amount larger than the balance (should not change balance). */
-@Test
-public void testWithdraw_AmountGreaterThanBalance() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(500);
-    System.setIn(new ByteArrayInputStream("700\n".getBytes()));
+    /**
+     * Tests withdrawing an amount larger than the balance (should not change
+     * balance).
+     */
+    @Test
+    public void testWithdraw_AmountGreaterThanBalance() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(500);
+        System.setIn(new ByteArrayInputStream("700\n".getBytes()));
 
-    new procces().withdraw();
+        new procces().withdraw();
 
-    assertEquals(500, procces.bank1.getBalance());
-}
+        assertEquals(500, procces.bank1.getBalance());
+    }
 
-/** Tests withdrawing an amount equal to the balance (withdrawal not allowed). */
-@Test
-public void testWithdraw_AmountEqualToBalance() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(300);
-    System.setIn(new ByteArrayInputStream("300\n".getBytes()));
+    /**
+     * Tests withdrawing an amount equal to the balance (withdrawal not
+     * allowed).
+     */
+    @Test
+    public void testWithdraw_AmountEqualToBalance() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(300);
+        System.setIn(new ByteArrayInputStream("300\n".getBytes()));
 
-    new procces().withdraw();
+        new procces().withdraw();
 
-    assertEquals(300, procces.bank1.getBalance());
-}
+        assertEquals(300, procces.bank1.getBalance());
+    }
 
-/** Tests withdrawing zero (balance should stay the same). */
-@Test
-public void testWithdraw_ZeroAmount() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(1000);
-    System.setIn(new ByteArrayInputStream("0\n".getBytes()));
+    /**
+     * Tests withdrawing zero (balance should stay the same).
+     */
+    @Test
+    public void testWithdraw_ZeroAmount() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(1000);
+        System.setIn(new ByteArrayInputStream("0\n".getBytes()));
 
-    new procces().withdraw();
+        new procces().withdraw();
 
-    assertEquals(1000, procces.bank1.getBalance());
-}
+        assertEquals(1000, procces.bank1.getBalance());
+    }
 
-/** Tests withdrawing a negative amount (should fail because code adds money but it doesn so its a BUG). */
-@Test
-public void testWithdraw_NegativeAmount() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(1000);
-    System.setIn(new ByteArrayInputStream("-50\n".getBytes()));
+    /**
+     * Tests withdrawing a negative amount (should fail because code adds money
+     * but it doesn so its a BUG).
+     */
+    @Test
+    public void testWithdraw_NegativeAmount() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(1000);
+        System.setIn(new ByteArrayInputStream("-50\n".getBytes()));
 
-    new procces().withdraw();
+        new procces().withdraw();
 
-    assertEquals(1000, procces.bank1.getBalance());
-}
-
+        assertEquals(1000, procces.bank1.getBalance());
+    }
 
 //----------------- Deposit Tests -----------------//
+    /**
+     * Tests depositing a valid positive amount.
+     */
+    @Test
+    public void testDeposit_ValidAmount() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(1000);
+        System.setIn(new ByteArrayInputStream("500\n".getBytes()));
 
-/** Tests depositing a valid positive amount. */
-@Test
-public void testDeposit_ValidAmount() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(1000);
-    System.setIn(new ByteArrayInputStream("500\n".getBytes()));
+        new procces().deposite();
 
-    new procces().deposite();
+        assertEquals(1500, procces.bank1.getBalance());
+    }
 
-    assertEquals(1500, procces.bank1.getBalance());
-}
+    /**
+     * Tests depositing zero (balance should remain unchanged).
+     */
+    @Test
+    public void testDeposit_ZeroAmount() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(1000);
+        System.setIn(new ByteArrayInputStream("0\n".getBytes()));
 
-/** Tests depositing zero (balance should remain unchanged). */
-@Test
-public void testDeposit_ZeroAmount() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(1000);
-    System.setIn(new ByteArrayInputStream("0\n".getBytes()));
+        new procces().deposite();
 
-    new procces().deposite();
+        assertEquals(1000, procces.bank1.getBalance());
+    }
 
-    assertEquals(1000, procces.bank1.getBalance());
-}
+    /**
+     * Tests depositing a negative amount (current code incorrectly reduces
+     * balance should be a BUG).
+     */
+    @Test
+    public void testDeposit_NegativeAmount() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(1000);
+        System.setIn(new ByteArrayInputStream("-200\n".getBytes()));
 
-/** Tests depositing a negative amount (current code incorrectly reduces balance should be a BUG). */
-@Test
-public void testDeposit_NegativeAmount() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(1000);
-    System.setIn(new ByteArrayInputStream("-200\n".getBytes()));
+        new procces().deposite();
 
-    new procces().deposite();
+        assertEquals(800, procces.bank1.getBalance());
+    }
 
-    assertEquals(800, procces.bank1.getBalance());
-}
+    /**
+     * Tests depositing a very large amount.
+     */
+    @Test
+    public void testDeposit_LargeAmount() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(1000);
+        System.setIn(new ByteArrayInputStream("100000\n".getBytes()));
 
-/** Tests depositing a very large amount. */
-@Test
-public void testDeposit_LargeAmount() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(1000);
-    System.setIn(new ByteArrayInputStream("100000\n".getBytes()));
+        new procces().deposite();
 
-    new procces().deposite();
+        assertEquals(101000, procces.bank1.getBalance());
+    }
 
-    assertEquals(101000, procces.bank1.getBalance());
-}
+    /**
+     * Tests multiple deposits done one after another.
+     */
+    @Test
+    public void testDeposit_MultipleDeposits() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(500);
 
-/** Tests multiple deposits done one after another. */
-@Test
-public void testDeposit_MultipleDeposits() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(500);
+        System.setIn(new ByteArrayInputStream("100\n".getBytes()));
+        new procces().deposite();
 
-    System.setIn(new ByteArrayInputStream("100\n".getBytes()));
-    new procces().deposite();
+        System.setIn(new ByteArrayInputStream("200\n".getBytes()));
+        new procces().deposite();
 
-    System.setIn(new ByteArrayInputStream("200\n".getBytes()));
-    new procces().deposite();
-
-    assertEquals(800, procces.bank1.getBalance());
-}
-
+        assertEquals(800, procces.bank1.getBalance());
+    }
 
 //----------------- Interest Tests -----------------//
+    /**
+     * Tests calculating interest using a valid positive rate.
+     */
+    @Test
+    public void testCalculateInterest_ValidRate() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(1000);
 
-/** Tests calculating interest using a valid positive rate. */
-@Test
-public void testCalculateInterest_ValidRate() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(1000);
+        new procces().calculateInterest(5.0);
 
-    new procces().calculateInterest(5.0);
+        assertEquals(1050, procces.bank1.getBalance());
+    }
 
-    assertEquals(1050, procces.bank1.getBalance());
-}
+    /**
+     * Tests interest calculation when rate is zero (balance unchanged).
+     */
+    @Test
+    public void testCalculateInterest_ZeroRate() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(2000);
 
-/** Tests interest calculation when rate is zero (balance unchanged). */
-@Test
-public void testCalculateInterest_ZeroRate() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(2000);
+        new procces().calculateInterest(0);
 
-    new procces().calculateInterest(0);
-
-    assertEquals(2000, procces.bank1.getBalance());
-}
-
+        assertEquals(2000, procces.bank1.getBalance());
+    }
 
 // Rule for exception testing
-@Rule
-public ExpectedException thrown = ExpectedException.none();
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
-/** Tests that a negative interest rate should throw an exception */
-@Test
-public void testCalculateInterest_NegativeRate_ThrowsException() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(1000);
+    /**
+     * Tests that a negative interest rate should throw an exception
+     */
+    @Test
+    public void testCalculateInterest_NegativeRate_ThrowsException() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(1000);
 
-    thrown.expect(IllegalArgumentException.class);
+        thrown.expect(IllegalArgumentException.class);
 
-    new procces().calculateInterest(-3);
-}
+        new procces().calculateInterest(-3);
+    }
 
-/** Tests interest calculation with a large 100% rate. */
-@Test
-public void testCalculateInterest_LargeRate() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(500);
+    /**
+     * Tests interest calculation with a large 100% rate.
+     */
+    @Test
+    public void testCalculateInterest_LargeRate() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(500);
 
-    new procces().calculateInterest(100);
+        new procces().calculateInterest(100);
 
-    assertEquals(1000, procces.bank1.getBalance());
-}
+        assertEquals(1000, procces.bank1.getBalance());
+    }
 
-/** Tests interest calculation using a fractional interest rate. */
-@Test
-public void testCalculateInterest_FractionalRate() {
-    procces.bank1 = new BankInfo();
-    procces.bank1.setBalance(1000);
+    /**
+     * Tests interest calculation using a fractional interest rate.
+     */
+    @Test
+    public void testCalculateInterest_FractionalRate() {
+        procces.bank1 = new BankInfo();
+        procces.bank1.setBalance(1000);
 
-    new procces().calculateInterest(2.5);
+        new procces().calculateInterest(2.5);
 
-    assertEquals(1025, procces.bank1.getBalance());
-}
+        assertEquals(1025, procces.bank1.getBalance());
+    }
 //********************Raghad UnitTest*******************///*
 
-  //**************Hadeel UnitTest**********************//
+    //**************Hadeel UnitTest**********************//
     /**
      * Test of checkbalance method, of class procces.
      */
@@ -311,6 +460,66 @@ public void testCalculateInterest_FractionalRate() {
         assertEquals(8000L, mockBank.getBalance());
     }
     //**************Hadeel UnitTest**********************//
+
+    //********************Shouq UnitTest*******************//
+    // Test 1 : Invalid input (amount, months, or salary <= 0)
+    @Test
+    public void testRequestLoan_InvalidInput_Amount() {
+        String result = process.requestLoan(0, 12, 5000);
+        assertEquals("Failed_invalid_input", result);
+
+    }
+
+    @Test
+    public void testRequestLoan_InvalidInput_Months() {
+        String result = process.requestLoan(1000, 0, 5000);
+        assertEquals("Failed_invalid_input", result);
+
+    }
+
+    @Test
+    public void testRequestLoan_InvalidInput_Salary() {
+        String result = process.requestLoan(1000, 12, 0);
+        assertEquals("Failed_invalid_input", result);
+
+    }
+
+    //  Amount too high (> salary * 20)
+    @Test
+    public void testRequestLoan_AmountTooHigh() {
+        when(mockBank.getBalance()).thenReturn(500000L);
+
+        String result = process.requestLoan(250000, 12, 10000); // 250000 > 10000*20
+        assertEquals("Failed_amount_too_high", result);
+    }
+
+    // Invalid duration (<6 or >60)
+    @Test
+    public void testRequestLoan_DurationTooShort() {
+        String result = process.requestLoan(10000, 5, 10000);
+        assertEquals("Failed_invalid_duration", result);
+    }
+
+    @Test
+    public void testRequestLoan_DurationTooLong() {
+        String result = process.requestLoan(10000, 61, 10000);
+        assertEquals("Failed_invalid_duration", result);
+    }
+
+    // Low balance for security (< 5% of amount)
+    @Test
+    public void testRequestLoan_LowBalanceForSecurity() {
+        when(mockBank.getBalance()).thenReturn(400L); // less than 5% of 10_000
+        String result = process.requestLoan(10000, 12, 10000);
+        assertEquals("Failed_low_balance_for_security", result);
+    }
+
+    // Success (passes all checks)
+    @Test
+    public void testRequestLoan_Success() {
+        when(mockBank.getBalance()).thenReturn(10000L);
+        String result = process.requestLoan(10000, 12, 10000);
+        assertEquals("Success", result);
+    }
+
 }
-
-

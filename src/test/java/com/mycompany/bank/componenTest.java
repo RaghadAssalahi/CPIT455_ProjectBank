@@ -7,13 +7,11 @@ package com.mycompany.bank;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class componenTest {
-
 
     private procces process;
     private BankInfo realBank;
@@ -34,39 +32,41 @@ public class componenTest {
     }
 
     // ---------------------------  Component Test 1:Raghad--------------------------------------
-  
     @Test
-public void testInterestThenCheckBalance_Component() {
-    // Arrange
-    realBank.setName("Test User");
-    realBank.setAccno("123456");
-    realBank.setAcc_type("Saving");
-    realBank.setBalance(2000);
+    public void testInterestThenCheckBalance_Component() {
+        // Arrange
+        realBank.setName("Test User");
+        realBank.setAccno("123456");
+        realBank.setAcc_type("Saving");
+        realBank.setBalance(2000);
 
-    // apply 5% interest, then display balance
-    process.calculateInterest(5);   // 5% interest
-    process.checkbalance();         // prints bank info + balance
+        // apply 5% interest, then display balance
+        process.calculateInterest(5);   // 5% interest
+        process.checkbalance();         // prints bank info + balance
 
-    //  updated balance
-    assertEquals(2100, realBank.getBalance(), 0.001);
-}
-   // ------------------------------  // Component Test 1:Hadeel-----------------------------------
- /**
- * Component Test 1: Demo Account Flow (PASS)
- */
- @Test
-public void componentTest_DemoAccountFlow() {
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-    System.setOut(new PrintStream(out));
+        //  updated balance
+        assertEquals(2100, realBank.getBalance(), 0.001);
+    }
+    // ------------------------------  // Component Test 1:Hadeel-----------------------------------
 
-    String input = "0\n";
-    System.setIn(new ByteArrayInputStream(input.getBytes()));
+    /**
+     * Component Test 1: Demo Account Flow (PASS)
+     */
+    @Test
+    public void componentTest_DemoAccountFlow() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
 
-    Operation.operation(5);
+        String input = "0\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-    String output = out.toString();
+        Operation.operation(5);
 
-    assertTrue(output.contains("Demo user"));
-    assertTrue(output.contains("Balance"));
-}
+        String output = out.toString();
+
+        assertTrue(output.contains("Demo user"));
+        assertTrue(output.contains("Balance"));
+    }
+
+   
 }
