@@ -3,8 +3,7 @@ package com.mycompany.bank;
 import java.util.Scanner;
 
 public class procces {
-
-    Scanner sc = new Scanner(System.in);
+    static Scanner sc = Operation.scan;
     static BankInfo bank1 = new BankInfo();
 
     static {
@@ -66,7 +65,7 @@ public class procces {
     public void withdraw() {
 
         System.out.println("Enter the Amount you want to withdraw:");
-        Scanner sc = new Scanner(System.in);
+        //Scanner sc = new Scanner(System.in);
         int withdraw = sc.nextInt();
         if (withdraw < bank1.getBalance()) {
             bank1.setBalance(bank1.getBalance() - withdraw);
@@ -87,7 +86,6 @@ public class procces {
 
     }
     
-    // new methods to calc the the probility of loan 
     public String requestLoan(int amount, int months, double salary){
     if (amount <= 0 || months <= 0 || salary <= 0) {
         return "Failed_invalid_input";
@@ -103,5 +101,9 @@ public class procces {
     }
     return "Success";
 }
+    public boolean isBalanceLow(long threshold) {
+    return bank1.getBalance() < threshold;
+}
+
 
 }

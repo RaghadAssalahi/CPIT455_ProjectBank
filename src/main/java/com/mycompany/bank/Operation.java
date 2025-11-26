@@ -3,14 +3,13 @@ package com.mycompany.bank;
 import java.util.Scanner;
 
 public class Operation {
-
+    public static Scanner scan = new Scanner(System.in);
     public static void bankinfo() {
-        Scanner scan = new Scanner(System.in);
         System.out.println(" ----------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println(" ***Banking System Application***");
         System.out.println(" -----------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
-        System.out.println(" 1. Create a new account  \n 2. Check Balance\n 3. Deposit the amount \n 4. Withdraw the amount  \n 5. Watch demo account \n 6. Calculate the interset \n 7. Request loan \n 8. Exit  \n\nENTER YOUR CHOISE :: ");
+        System.out.println(" 1. Create a new account  \n 2. Check Balance\n 3. Deposit the amount \n 4. Withdraw the amount  \n 5. Watch demo account \n 6. Calculate the interset \n 7. Request loan \n 8.Check if balance is low \n 9. Exit  \n\nENTER YOUR CHOISE :: ");
         int key = scan.nextInt();
         operation(key);
 
@@ -18,7 +17,7 @@ public class Operation {
 
     public static void operation(int key) {
         BankInfo bank = new BankInfo();
-        Scanner scan = new Scanner(System.in);
+       // Scanner scan = new Scanner(System.in);
         procces bankprocess = new procces();
         switch (key) {
             case 1:
@@ -111,8 +110,23 @@ public class Operation {
                 if (scan.nextInt() == 1) {
                     bankinfo();
                 }
-                
+                 break;
             case 8:
+                System.out.println("Enter threshold amount:");
+                long threshold = scan.nextLong();
+
+                if (procces.bank1.getBalance() < threshold) {
+                    System.out.println("Your balance is LOW.");
+                } else {
+                    System.out.println("Your balance is GOOD.");
+                }
+                System.out.println(" -----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                System.out.println("MAIN PAGE_:: PRESS 1 ::");
+                if (scan.nextInt() == 1) {
+                    bankinfo();
+                }
+                break;    
+            case 9:
                 System.out.println("THANKS FOR USING OUT BANK APPLICATION");
                 break;
 

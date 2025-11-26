@@ -10,6 +10,8 @@ package com.mycompany.bank;
 
 
 import java.io.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import org.junit.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,101 +39,116 @@ public class OperationTest {
     @After
     public void tearDown() {
     }
-//**************Hadeel UnitTest**********************//
+
+/*************** Hadeel Unit Test *******************/
     /**
      * 
      * Test of bankinfo method, of class Operation.
      */
-   //Test 1: Valid input (example: 6 = Exit) To Checks if the method works correctly with a valid number.//
-    @Test
+   //Test 1: Valid input (example: 9 = Exit) To Checks if the method works correctly with a valid number.//
+     @Test
     public void testBankInfo_ValidChoice() {
-        // Simulate user typing "6" then Enter
-        String input = "6\n";
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        String input = "9\n";  
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        // Run the method
+        Operation.scan = new Scanner(System.in);
+
         Operation.bankinfo();
 
-        // Pass if no error happens
-        assertTrue(true);
+        String output = out.toString();
+        assertTrue(output.contains("THANKS FOR USING"));
     }
-
+ 
     //Test 2: Invalid input (text instead of number) to Checks if the method can handle wrong input type.//
-   /* @Test
-    public void testBankInfo_InvalidChoice() {
-        // Simulate user typing "hadeel" then Enter
+    @Test(expected = InputMismatchException.class)
+    public void testBankInfo_InvalidChoice_NonNumeric() {
+
         String input = "hadeel\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        // Run the method
-        Operation.bankinfo();
+        Operation.scan = new Scanner(System.in);
 
-        // Pass if no error happens
-        assertTrue(true);
+        Operation.bankinfo(); 
     }
-*/
-    //Test 3: Out of range input (example: 9) to Checks if the method handles numbers not in the menu.//
+       //Test 3: Out of range input (example: 11) to Checks if the method handles numbers not in the menu.//
     @Test
     public void testBankInfo_OutOfRangeChoice() {
-        // Simulate user typing "9" then Enter
-        String input = "9\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        try {
-            Operation.bankinfo();
-            // If method ignores wrong number, test fails logically
-            fail("Program did not handle wrong number.");
-        } catch (Exception e) {
-            // Fail if unexpected exception happens
-            assertTrue(false);
-        }
+        String input = "11\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        Operation.scan = new Scanner(System.in);
+
+        Operation.bankinfo();
+
+        // This SHOULD be printed, but the program does NOT print it.
+        // Therefore, this test FAILS intentionally to show the problem.
+        fail("Out-of-range input is not handled (Intentional FAIL).");
     }
+
+//**************Hadeel UnitTest**********************/
+    
      /**
        * Test of operation method, of class Operation.
        */
     //Test 1 (PASS): key = 2 to checks that checkbalance output is printed correctly//
-@Test
-public void testOperation_CheckBalanceCase() {
-
-    // capture system output
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-    System.setOut(new PrintStream(out));
-
-    // simulate TWO clean inputs (no spaces!)
-    String input = "2\n1\n1\n";
-    System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-    // call method
-    Operation.operation(2);
-
-    // get printed output
-    String output = out.toString();
-
-    // expected keyword printed by checkbalance()
-    String expected = "Balance";
-
-    // PASS if the output contains expected keyword
-    assertTrue(output.contains(expected));
-}
-
-
-    //Test 2 (FAIL): key = 9 to checks that invalid key does not match expected output//
     @Test
-    public void testOperation_InvalidKey() {
+    public void testOperation_CheckBalanceCase() {
+
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        // no input
-        System.setIn(new ByteArrayInputStream("".getBytes()));
+        String input = "1\n9\n";  
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        // call with invalid key
-        Operation.operation(9);
+        Operation.scan = new Scanner(System.in);
+
+        Operation.operation(2);  // check balance
 
         String output = out.toString();
-
-        // this will FAIL because invalid key does not print any 'Balance' keyword
-        assertTrue("Expected output not found", output.contains("Balance"));
+        assertTrue(output.contains("Balance"));
     }
-//**************Hadeel UnitTest**********************//
+
+    
+    @Test
+    public void testOperation_InvalidKey() {
+
+        // User enters invalid menu choice
+        System.setIn(new ByteArrayInputStream("\n".getBytes()));
+        Operation.scan = new Scanner(System.in);
+
+        Operation.operation(11);
+
+        // The program SHOULD show a warning, but it does NOT.
+        // So we FAIL intentionally.
+        fail("Invalid key is accepted without any message (Intentional FAIL).");
+    }
+    
+    @Test
+public void coverCase1_openAccount() {
+
+    procces.bank1 = new BankInfo();
+
+    // 4 inputs for openAccount
+    // + 1 (return to main page)
+    // + 9 (exit)
+    String input =
+            "123\n" +     // acc no
+            "Saving\n" +   // type
+            "Hadeel\n" +   // name
+            "5000\n" +     // balance
+            "1\n" +        // go back to main menu
+            "9\n";         // exit
+
+    System.setIn(new ByteArrayInputStream(input.getBytes()));
+    Operation.scan = new Scanner(System.in);
+    procces.sc = Operation.scan;
+
+    Operation.operation(1);
+}
+
     
 }

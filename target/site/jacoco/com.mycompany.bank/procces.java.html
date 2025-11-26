@@ -3,106 +3,108 @@
 import java.util.Scanner;
 
 <span class="fc" id="L5">public class procces {</span>
-
-<span class="fc" id="L7">    Scanner sc = new Scanner(System.in);</span>
-<span class="fc" id="L8">    static BankInfo bank1 = new BankInfo();</span>
+<span class="fc" id="L6">    static Scanner sc = Operation.scan;</span>
+<span class="fc" id="L7">    static BankInfo bank1 = new BankInfo();</span>
 
     static {
-<span class="fc" id="L11">        bank1.setAccno(&quot;854621348597&quot;);</span>
-<span class="fc" id="L12">        bank1.setName(&quot;RBL Bank&quot;);</span>
-<span class="fc" id="L13">        bank1.setAcc_type(&quot;Saving&quot;);</span>
-<span class="fc" id="L14">        bank1.setBalance(10000000);</span>
+<span class="fc" id="L10">        bank1.setAccno(&quot;854621348597&quot;);</span>
+<span class="fc" id="L11">        bank1.setName(&quot;RBL Bank&quot;);</span>
+<span class="fc" id="L12">        bank1.setAcc_type(&quot;Saving&quot;);</span>
+<span class="fc" id="L13">        bank1.setBalance(10000000);</span>
 
-<span class="fc" id="L16">    }</span>
+<span class="fc" id="L15">    }</span>
 
     public void openAccount() {
-<span class="fc" id="L19">        System.out.print(&quot;Enter Account No: &quot;);</span>
-<span class="fc" id="L20">        bank1.setAccno(sc.next());</span>
-<span class="fc" id="L21">        System.out.print(&quot;Enter Account type: &quot;);</span>
-<span class="fc" id="L22">        bank1.setAcc_type(sc.next());</span>
-<span class="fc" id="L23">        System.out.print(&quot;Enter Name: &quot;);</span>
-<span class="fc" id="L24">        bank1.setName(sc.next());</span>
-<span class="fc" id="L25">        System.out.print(&quot;Enter Balance: &quot;);</span>
-<span class="fc" id="L26">        bank1.setBalance(sc.nextLong());</span>
+<span class="fc" id="L18">        System.out.print(&quot;Enter Account No: &quot;);</span>
+<span class="fc" id="L19">        bank1.setAccno(sc.next());</span>
+<span class="fc" id="L20">        System.out.print(&quot;Enter Account type: &quot;);</span>
+<span class="fc" id="L21">        bank1.setAcc_type(sc.next());</span>
+<span class="fc" id="L22">        System.out.print(&quot;Enter Name: &quot;);</span>
+<span class="fc" id="L23">        bank1.setName(sc.next());</span>
+<span class="fc" id="L24">        System.out.print(&quot;Enter Balance: &quot;);</span>
+<span class="fc" id="L25">        bank1.setBalance(sc.nextLong());</span>
 
-<span class="fc" id="L28">        System.out.println(&quot;------YOUR ACCOUNT DETAILS IS -------&quot;);</span>
-<span class="fc" id="L29">        System.out.println(&quot;Name of account holder :: &quot; + bank1.getName());</span>
-<span class="fc" id="L30">        System.out.println(&quot;Account no             :: &quot; + bank1.getAccno());</span>
-<span class="fc" id="L31">        System.out.println(&quot;Account type           :: &quot; + bank1.getAcc_type());</span>
-<span class="fc" id="L32">        System.out.println(&quot;Balance                :: &quot; + bank1.getBalance());</span>
+<span class="fc" id="L27">        System.out.println(&quot;------YOUR ACCOUNT DETAILS IS -------&quot;);</span>
+<span class="fc" id="L28">        System.out.println(&quot;Name of account holder :: &quot; + bank1.getName());</span>
+<span class="fc" id="L29">        System.out.println(&quot;Account no             :: &quot; + bank1.getAccno());</span>
+<span class="fc" id="L30">        System.out.println(&quot;Account type           :: &quot; + bank1.getAcc_type());</span>
+<span class="fc" id="L31">        System.out.println(&quot;Balance                :: &quot; + bank1.getBalance());</span>
 
-<span class="fc" id="L34">    }</span>
+<span class="fc" id="L33">    }</span>
 
 
     public void demoaccount() {
-<span class="fc" id="L38">        int demobalance = 50000;</span>
-<span class="fc" id="L39">        System.out.println(&quot;Name of account holder :: &quot; + &quot;Demo user&quot;);</span>
-<span class="fc" id="L40">        System.out.println(&quot;Account no             :: &quot; + &quot;8529637412&quot;);</span>
-<span class="fc" id="L41">        System.out.println(&quot;Account type           :: &quot; + &quot;demo&quot;);</span>
-<span class="fc" id="L42">        System.out.println(&quot;Balance                :: &quot; + demobalance);</span>
+<span class="fc" id="L37">        int demobalance = 50000;</span>
+<span class="fc" id="L38">        System.out.println(&quot;Name of account holder :: &quot; + &quot;Demo user&quot;);</span>
+<span class="fc" id="L39">        System.out.println(&quot;Account no             :: &quot; + &quot;8529637412&quot;);</span>
+<span class="fc" id="L40">        System.out.println(&quot;Account type           :: &quot; + &quot;demo&quot;);</span>
+<span class="fc" id="L41">        System.out.println(&quot;Balance                :: &quot; + demobalance);</span>
 
-<span class="fc" id="L44">    }</span>
+<span class="fc" id="L43">    }</span>
 
     public void deposite() {
-<span class="fc" id="L47">        System.out.println(&quot;Enter the Amount you want to deposit ::&quot;);</span>
-<span class="fc" id="L48">        int deposit = sc.nextInt();</span>
-<span class="fc" id="L49">        int amount = (int) ((bank1.getBalance()) + deposit);</span>
-<span class="fc" id="L50">        bank1.setBalance(amount);</span>
-<span class="fc" id="L51">        System.out.println(&quot; &quot; + deposit + &quot; is deposited into your Account&quot;);</span>
-<span class="fc" id="L52">        System.out.println(&quot;Current Available Balance is Rs = &quot; + bank1.getBalance());</span>
+<span class="fc" id="L46">        System.out.println(&quot;Enter the Amount you want to deposit ::&quot;);</span>
+<span class="fc" id="L47">        int deposit = sc.nextInt();</span>
+<span class="fc" id="L48">        int amount = (int) ((bank1.getBalance()) + deposit);</span>
+<span class="fc" id="L49">        bank1.setBalance(amount);</span>
+<span class="fc" id="L50">        System.out.println(&quot; &quot; + deposit + &quot; is deposited into your Account&quot;);</span>
+<span class="fc" id="L51">        System.out.println(&quot;Current Available Balance is Rs = &quot; + bank1.getBalance());</span>
 
-<span class="fc" id="L54">    }</span>
+<span class="fc" id="L53">    }</span>
 
     public void calculateInterest(double rate) {
-<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (rate &gt; 0) {</span>
-<span class="fc" id="L58">            double interest = (bank1.getBalance() * rate) / 100;</span>
-<span class="fc" id="L59">            bank1.setBalance(bank1.getBalance() + (int) interest);</span>
-<span class="fc" id="L60">            System.out.println(&quot;Interest added: &quot; + interest);</span>
-<span class="fc" id="L61">        } else {</span>
-<span class="fc" id="L62">            System.out.println(&quot;Invalid interest rate!&quot;);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (rate &gt; 0) {</span>
+<span class="fc" id="L57">            double interest = (bank1.getBalance() * rate) / 100;</span>
+<span class="fc" id="L58">            bank1.setBalance(bank1.getBalance() + (int) interest);</span>
+<span class="fc" id="L59">            System.out.println(&quot;Interest added: &quot; + interest);</span>
+<span class="fc" id="L60">        } else {</span>
+<span class="fc" id="L61">            System.out.println(&quot;Invalid interest rate!&quot;);</span>
         }
-<span class="fc" id="L64">    }</span>
+<span class="fc" id="L63">    }</span>
 
     public void withdraw() {
 
-<span class="fc" id="L68">        System.out.println(&quot;Enter the Amount you want to withdraw:&quot;);</span>
-<span class="fc" id="L69">        Scanner sc = new Scanner(System.in);</span>
-<span class="fc" id="L70">        int withdraw = sc.nextInt();</span>
-<span class="fc bfc" id="L71" title="All 2 branches covered.">        if (withdraw &lt; bank1.getBalance()) {</span>
-<span class="fc" id="L72">            bank1.setBalance(bank1.getBalance() - withdraw);</span>
-<span class="fc" id="L73">            System.out.println(&quot; &quot; + withdraw + &quot; is withdrawn from your Account&quot;);</span>
-<span class="fc" id="L74">            System.out.println(&quot;Current Available Balance is Rs  ::&quot; + bank1.getBalance());</span>
+<span class="fc" id="L67">        System.out.println(&quot;Enter the Amount you want to withdraw:&quot;);</span>
+        //Scanner sc = new Scanner(System.in);
+<span class="fc" id="L69">        int withdraw = sc.nextInt();</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (withdraw &lt; bank1.getBalance()) {</span>
+<span class="fc" id="L71">            bank1.setBalance(bank1.getBalance() - withdraw);</span>
+<span class="fc" id="L72">            System.out.println(&quot; &quot; + withdraw + &quot; is withdrawn from your Account&quot;);</span>
+<span class="fc" id="L73">            System.out.println(&quot;Current Available Balance is Rs  ::&quot; + bank1.getBalance());</span>
         } else {
-<span class="fc" id="L76">            System.out.println(&quot;Low Balance&quot;);</span>
-<span class="fc" id="L77">            System.out.println(&quot;Current Available Balance is Rs  ::&quot; + bank1.getBalance());</span>
+<span class="fc" id="L75">            System.out.println(&quot;Low Balance&quot;);</span>
+<span class="fc" id="L76">            System.out.println(&quot;Current Available Balance is Rs  ::&quot; + bank1.getBalance());</span>
         }
-<span class="fc" id="L79">    }</span>
+<span class="fc" id="L78">    }</span>
 
     public void checkbalance() {
-<span class="fc" id="L82">        System.out.println(&quot;Your name is           :: &quot; + bank1.getName());</span>
-<span class="fc" id="L83">        System.out.println(&quot;Account no             :: &quot; + bank1.getAccno());</span>
-<span class="fc" id="L84">        System.out.println(&quot;Account type           :: &quot; + bank1.getAcc_type());</span>
-<span class="fc" id="L85">        System.out.println(&quot;Balance                :: &quot; + bank1.getBalance());</span>
-<span class="fc" id="L86">        System.out.println(&quot;THANKS FOR BALANCE CHECKING &quot;);</span>
+<span class="fc" id="L81">        System.out.println(&quot;Your name is           :: &quot; + bank1.getName());</span>
+<span class="fc" id="L82">        System.out.println(&quot;Account no             :: &quot; + bank1.getAccno());</span>
+<span class="fc" id="L83">        System.out.println(&quot;Account type           :: &quot; + bank1.getAcc_type());</span>
+<span class="fc" id="L84">        System.out.println(&quot;Balance                :: &quot; + bank1.getBalance());</span>
+<span class="fc" id="L85">        System.out.println(&quot;THANKS FOR BALANCE CHECKING &quot;);</span>
 
-<span class="fc" id="L88">    }</span>
+<span class="fc" id="L87">    }</span>
     
-    // new methods to calc the the probility of loan 
     public String requestLoan(int amount, int months, double salary){
-<span class="fc bfc" id="L92" title="All 6 branches covered.">    if (amount &lt;= 0 || months &lt;= 0 || salary &lt;= 0) {</span>
-<span class="fc" id="L93">        return &quot;Failed_invalid_input&quot;;</span>
+<span class="fc bfc" id="L90" title="All 6 branches covered.">    if (amount &lt;= 0 || months &lt;= 0 || salary &lt;= 0) {</span>
+<span class="fc" id="L91">        return &quot;Failed_invalid_input&quot;;</span>
     }
-<span class="fc bfc" id="L95" title="All 2 branches covered.">    if (amount &gt; salary * 20) {</span>
-<span class="fc" id="L96">        return &quot;Failed_amount_too_high&quot;;</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">    if (amount &gt; salary * 20) {</span>
+<span class="fc" id="L94">        return &quot;Failed_amount_too_high&quot;;</span>
     }
-<span class="fc bfc" id="L98" title="All 4 branches covered.">    if (months &lt; 6 || months &gt; 60) {</span>
-<span class="fc" id="L99">        return &quot;Failed_invalid_duration&quot;;</span>
+<span class="fc bfc" id="L96" title="All 4 branches covered.">    if (months &lt; 6 || months &gt; 60) {</span>
+<span class="fc" id="L97">        return &quot;Failed_invalid_duration&quot;;</span>
     }
-<span class="fc bfc" id="L101" title="All 2 branches covered.">    if (bank1.getBalance() &lt; amount * 0.05) {</span>
-<span class="fc" id="L102">        return &quot;Failed_low_balance_for_security&quot;;</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">    if (bank1.getBalance() &lt; amount * 0.05) {</span>
+<span class="fc" id="L100">        return &quot;Failed_low_balance_for_security&quot;;</span>
     }
-<span class="fc" id="L104">    return &quot;Success&quot;;</span>
+<span class="fc" id="L102">    return &quot;Success&quot;;</span>
 }
+    public boolean isBalanceLow(long threshold) {
+<span class="fc bfc" id="L105" title="All 2 branches covered.">    return bank1.getBalance() &lt; threshold;</span>
+}
+
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
