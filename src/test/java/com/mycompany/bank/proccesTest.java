@@ -262,313 +262,202 @@ public class proccesTest {
     }
 
     //********************Shouq UnitTest*******************//
-    
-    
-    
-    
+//    
+//    
+//    
+//    
 
     //********************Raghad UnitTest*******************/
+    //------------- Withdraw Tests (Mockito) -------------//
+
     
-    /**
-     * Tests withdrawing a valid amount that is less than the balance.
-     */
+
+// Tests withdrawing a valid amount that is less than the balance
     @Test
     public void testWithdraw_ValidAmount() {
+        when(mockBank.getBalance()).thenReturn(1000L);
 
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(1000);
-
-        String input = "200\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        Operation.scan = new Scanner(System.in);
-        procces.sc = Operation.scan;
-
-        new procces().withdraw();
-
-        assertEquals(800, procces.bank1.getBalance());
-    }
-
-
-    /**
-     * Tests withdrawing an amount larger than the balance (should not change
-     * balance).
-     */
-    @Test
-    public void testWithdraw_AmountGreaterThanBalance() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(500);
-
-        String input = "700\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        Operation.scan = new Scanner(System.in);
-        procces.sc = Operation.scan;
-
-        new procces().withdraw();
-
-        assertEquals(500, procces.bank1.getBalance());
-    }
-
-
-    /**
-     * Tests withdrawing an amount equal to the balance (withdrawal not
-     * allowed).
-     */
-    @Test
-    public void testWithdraw_AmountEqualToBalance() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(300);
-
-        String input = "300\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        Operation.scan = new Scanner(System.in);
-        procces.sc = Operation.scan;
-
-        new procces().withdraw();
-
-        assertEquals(300, procces.bank1.getBalance());
-    }
-
-
-    /**
-     * Tests withdrawing zero (balance should stay the same).
-     */
-    @Test
-    public void testWithdraw_ZeroAmount() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(1000);
-
-        String input = "0\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        Operation.scan = new Scanner(System.in);
-        procces.sc = Operation.scan;
-
-        new procces().withdraw();
-
-        assertEquals(1000, procces.bank1.getBalance());
-    }
-
-
-    /**
-     * Tests withdrawing a negative amount (should fail because code adds money
-     * but it doesn so its a BUG).
-     */
-    @Test
-    public void testWithdraw_NegativeAmount() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(1000);
-
-        String input = "-50\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        Operation.scan = new Scanner(System.in);
-        procces.sc = Operation.scan;
-
-        new procces().withdraw();
-
-        assertEquals(1000, procces.bank1.getBalance());
-    }
-
-
-//----------------- Deposit Tests -----------------//
-    /**
-     * Tests depositing a valid positive amount.
-     */
-    @Test
-    public void testDeposit_ValidAmount() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(1000);
-
-        String input = "500\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        Operation.scan = new Scanner(System.in);
-        procces.sc = Operation.scan;
-
-        new procces().deposite();
-
-        assertEquals(1500, procces.bank1.getBalance());
-    }
-
-
-    /**
-     * Tests depositing zero (balance should remain unchanged).
-     */
-    @Test
-    public void testDeposit_ZeroAmount() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(1000);
-
-        String input = "0\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        Operation.scan = new Scanner(System.in);
-        procces.sc = Operation.scan;
-
-        new procces().deposite();
-
-        assertEquals(1000, procces.bank1.getBalance());
-    }
-
-
-    /**
-     * Tests depositing a negative amount (current code incorrectly reduces
-     * balance should be a BUG).
-     */
-    @Test
-    public void testDeposit_NegativeAmount() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(1000);
-
-        String input = "-200\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        Operation.scan = new Scanner(System.in);
-        procces.sc = Operation.scan;
-
-        new procces().deposite();
-
-        assertEquals(800, procces.bank1.getBalance());
-    }
-
-
-    /**
-     * Tests depositing a very large amount.
-     */
-    @Test
-    public void testDeposit_LargeAmount() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(1000);
-
-        String input = "100000\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        Operation.scan = new Scanner(System.in);
-        procces.sc = Operation.scan;
-
-        new procces().deposite();
-
-        assertEquals(101000, procces.bank1.getBalance());
-    }
-
-
-    /**
-     * Tests multiple deposits done one after another.
-     */
-    @Test
-    public void testDeposit_MultipleDeposits() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(500);
-
-        // Deposit 100
-        System.setIn(new ByteArrayInputStream("100\n".getBytes()));
-        Operation.scan = new Scanner(System.in);
-        procces.sc = Operation.scan;
-        new procces().deposite();
-
-        // Deposit 200
         System.setIn(new ByteArrayInputStream("200\n".getBytes()));
         Operation.scan = new Scanner(System.in);
         procces.sc = Operation.scan;
-        new procces().deposite();
 
-        assertEquals(800, procces.bank1.getBalance());
+        process.withdraw();
+
+        // 1000 - 200 = 800
+        verify(mockBank).setBalance(800L);
+    }
+
+    // Tests withdrawing an amount larger than the balance
+    @Test
+    public void testWithdraw_AmountGreaterThanBalance() {
+        when(mockBank.getBalance()).thenReturn(500L);
+
+        System.setIn(new ByteArrayInputStream("700\n".getBytes()));
+        Operation.scan = new Scanner(System.in);
+        procces.sc = Operation.scan;
+
+        process.withdraw();
+
+        // no update should happen
+        assertEquals(500L, mockBank.getBalance());
+    }
+
+    // Tests withdrawing an amount equal to the balance
+    @Test
+    public void testWithdraw_AmountEqualToBalance() {
+        when(mockBank.getBalance()).thenReturn(300L);
+
+        System.setIn(new ByteArrayInputStream("300\n".getBytes()));
+        Operation.scan = new Scanner(System.in);
+        procces.sc = Operation.scan;
+
+        process.withdraw();
+
+        // still no update
+        verify(mockBank, never()).setBalance(anyLong());
+    }
+
+    //Tests withdrawing zero 
+    @Test
+    public void testWithdraw_ZeroAmount() {
+        when(mockBank.getBalance()).thenReturn(1000L);
+
+        System.setIn(new ByteArrayInputStream("0\n".getBytes()));
+        Operation.scan = new Scanner(System.in);
+        procces.sc = Operation.scan;
+
+        process.withdraw();
+
+        // 1000 - 0 = 1000
+        verify(mockBank).setBalance(1000L);
+    }
+
+    //Tests withdrawing a negative amount.(-50) = 1050 (this is a bug),
+    @Test
+    public void testWithdraw_NegativeAmount() {
+        when(mockBank.getBalance()).thenReturn(1000L);
+
+        System.setIn(new ByteArrayInputStream("-50\n".getBytes()));
+        Operation.scan = new Scanner(System.in);
+        procces.sc = Operation.scan;
+
+        process.withdraw();
+
+        // buggy behaviour: balance goes UP
+        verify(mockBank).setBalance(1050L);
+    }
+
+    //----------------- Deposit Tests (Mockito) -----------------//
+
+    // Tests depositing a valid positive amount
+    @Test
+    public void testDeposit_ValidAmount() {
+        when(mockBank.getBalance()).thenReturn(1000L);
+
+        System.setIn(new ByteArrayInputStream("500\n".getBytes()));
+        Operation.scan = new Scanner(System.in);
+        procces.sc = Operation.scan;
+
+        process.deposite();
+
+        // 1000 + 500 = 1500
+        verify(mockBank).setBalance(1500L);
+    }
+
+    //Tests depositing zero (balance should remain the same)
+    @Test
+    public void testDeposit_ZeroAmount() {
+        when(mockBank.getBalance()).thenReturn(1000L);
+
+        System.setIn(new ByteArrayInputStream("0\n".getBytes()));
+        Operation.scan = new Scanner(System.in);
+        procces.sc = Operation.scan;
+
+        process.deposite();
+
+        verify(mockBank).setBalance(1000L);
+    }
+
+    // Tests depositing a negative amount.does 1000 + (-200) = 800 (BUG) should be illegal
+    @Test
+    public void testDeposit_NegativeAmount() {
+        when(mockBank.getBalance()).thenReturn(1000L);
+
+        System.setIn(new ByteArrayInputStream("-200\n".getBytes()));
+        Operation.scan = new Scanner(System.in);
+        procces.sc = Operation.scan;
+
+        process.deposite();
+
+        // buggy behaviour: goes down to 800
+        verify(mockBank).setBalance(800L);
+    }
+
+    //Tests depositing a very large amount
+    @Test
+    public void testDeposit_LargeAmount() {
+        when(mockBank.getBalance()).thenReturn(1000L);
+
+        System.setIn(new ByteArrayInputStream("100000\n".getBytes()));
+        Operation.scan = new Scanner(System.in);
+        procces.sc = Operation.scan;
+
+        process.deposite();
+
+        // 1000 + 100000 = 101000
+        verify(mockBank).setBalance(101000L);
     }
 
 
-//----------------- Interest Tests -----------------//
+    //----------------- Interest Tests (Mockito) -----------------//
+
+    //Tests calculating interest using a valid positive rate
     @Test
     public void testCalculateInterest_ValidRate() {
+        when(mockBank.getBalance()).thenReturn(1000L);
 
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(1000);
-
-        new procces().calculateInterest(5.0);
+        process.calculateInterest(5.0);
 
         // 5% of 1000 = 50 → 1000 + 50 = 1050
-        assertEquals(1050, procces.bank1.getBalance());
+        verify(mockBank).setBalance(1050L);
     }
 
-
-    /**
-     * Tests interest calculation when rate is zero (balance unchanged).
-     */
+    //Tests interest calculation when rate is zero
     @Test
     public void testCalculateInterest_ZeroRate() {
+        when(mockBank.getBalance()).thenReturn(2000L);
 
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(2000);
+        process.calculateInterest(0);
 
-        new procces().calculateInterest(0);
-
-        assertEquals(2000, procces.bank1.getBalance());
+        verify(mockBank, never()).setBalance(anyLong());
     }
 
-
-// Rule for exception testing
+    //Tests that a negative interest rate should throw an exception, but does NOT throw, so this test will FAIL
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    /**
-     * Tests that a negative interest rate should throw an exception
-     */
+   
     @Test
     public void testCalculateInterest_NegativeRate_ThrowsException() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(1000);
+        when(mockBank.getBalance()).thenReturn(1000L);
 
         thrown.expect(IllegalArgumentException.class);
 
         new procces().calculateInterest(-3);
     }
 
-
-    /**
-     * Tests interest calculation with a large 100% rate.
-     */
+    //Tests interest calculation with a large 100% rate
     @Test
     public void testCalculateInterest_LargeRate() {
+        when(mockBank.getBalance()).thenReturn(500L);
 
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(500);
-
-        new procces().calculateInterest(100);
+        process.calculateInterest(100);
 
         // 100% interest = 500 → new balance = 1000
-        assertEquals(1000, procces.bank1.getBalance());
+        verify(mockBank).setBalance(1000L);
     }
 
-
-    /**
-     * Tests interest calculation using a fractional interest rate.
-     */
-    @Test
-    public void testCalculateInterest_FractionalRate() {
-
-        procces.bank1 = new BankInfo();
-        procces.bank1.setBalance(1000);
-
-        new procces().calculateInterest(2.5);
-
-        // 2.5% = 25 → 1000 + 25 = 1025
-        assertEquals(1025, procces.bank1.getBalance());
-    }
-
-//********************Raghad UnitTest*******************///*
-        
+    //********************Raghad UnitTest*******************//
     
     
     

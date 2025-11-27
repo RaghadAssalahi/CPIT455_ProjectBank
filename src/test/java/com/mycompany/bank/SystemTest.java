@@ -8,7 +8,6 @@ Shouq Alsubaie
 */
 package com.mycompany.bank;
 
-
 import java.io.*;
 import java.util.Scanner;
 import org.junit.*;
@@ -17,7 +16,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class SystemTest {
-       /**
+
+    /**
      * System Test: Full User Journey
      * Simulates a full real-world scenario:
      * - Check Balance
@@ -38,12 +38,12 @@ public class SystemTest {
         // full scenario (all choices)
         String input =
                 "2\n1\n" +       // check balance, back
-                "3\n500\n1\n" +  // deposit, back
-                "4\n200\n1\n" +  // withdraw, back
-                "5\n1\n" +       // demo account, back
+                "3\n500\n1\n" +  // deposit 500, back to menu
+                "4\n200\n1\n" +  // withdraw 200, back to menu
+                "5\n1\n" +       // demo account, back to menu
                 "6\n5\n1\n" +    // interest, back
-                "7\n5000\n12\n6000\n1\n" + // loan, back
-                "8\n500\n1\n" +            // check balance low, back
+                "7\n5000\n12\n6000\n1\n" + // loan, backto . menu
+                "8\n500\n1\n" +            // check balance low, back to menu
                 "9\n";           // exit
 
         System.setIn(new ByteArrayInputStream(input.getBytes()));
@@ -57,12 +57,15 @@ public class SystemTest {
 
         String output = out.toString();
 
-        // SYSTEM TEST assertions
+        // SYSTEM TEST assertions - structure / flow
         assertTrue(output.contains("Balance"));
         assertTrue(output.contains("Demo user"));
         assertTrue(output.contains("WELCOME TO INTEREST"));
         assertTrue(output.contains("WELCOME TO LOAN REQUEST"));
         assertTrue(output.contains("LOW") || output.contains("GOOD"));
         assertTrue(output.contains("THANKS FOR USING"));
+
+        // 1000 (start) + 500 (deposit) - 200 (withdraw) + 65 (interest) = 1365
+        assertEquals(1365, procces.bank1.getBalance());
     }
 }
